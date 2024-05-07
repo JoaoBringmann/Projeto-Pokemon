@@ -14,21 +14,21 @@ pokemons_mato = ["Pidgey", "Rattata", "Ekans", "Oddish"]
 
 #----Inicio_Funções----#
 
-def pokemon_caverna():
+def pokemon_caverna():            #Verifica a chance de encontrar pokemon na caverna, se for menor não acha
     if random.random() < chance_caverna:
         return random.choice(pokemons_caverna)
     else:
         print("Nenhum Pokémon apareceu nesta exploração.")
         return None
 
-def pokemon_mato():
-    if random.random() < chance_mato:
+def pokemon_mato():                #Verifica a chance de encontrar pokemon no mato, se for menor não acha
+    if random.random() < chance_mato :
         return random.choice(pokemons_mato)
     else:
         print("Nenhum Pokémon apareceu nesta exploração.")
         return None
     
-def informar_pokemon_encontrado(pokemon_encontrado):
+def informar_pokemon_encontrado(pokemon_encontrado):                  #Vai informar o pokemon encontrado e dar a opção de capturar, se a chance for maior vai puxar a outra função que verifica se já tem aquele pokemon, se não tiver armazenar na lista
     print(f"\nParabéns, {nome_jogador}! Você encontrou um {pokemon_encontrado}!")
     captura = input((f"Deseja captura-lo? (sim/não)"))
     if captura == "sim":
