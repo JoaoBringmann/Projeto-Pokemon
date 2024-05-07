@@ -11,6 +11,9 @@ chance_captura = 0.5
 pokemons_caverna = ["Zubat", "Grimer", "Cubone", "Geodude"]
 pokemons_mato = ["Pidgey", "Rattata", "Ekans", "Oddish"]
 
+
+#----Inicio_Funções----#
+
 def pokemon_caverna():
     if random.random() < chance_caverna:
         return random.choice(pokemons_caverna)
@@ -31,7 +34,7 @@ def informar_pokemon_encontrado(pokemon_encontrado):
     if captura == "sim":
         if random.random() < chance_captura:
             capturar_pokemon(pokemon_encontrado)
-            print(f"Parabéns, {nome_jogador}! Você capturou um {pokemon_encontrado}!")
+            print(f"Parabéns, {nome_jogador}! Você capturou um {pokemon_encontrado}!")  
         else:
             print(f"Infelizmente, o {pokemon_encontrado} fugiu!")
 
@@ -42,7 +45,6 @@ def capturar_pokemon(pokemon_encontrado):
         print(f"O {pokemon_encontrado} já está na sua Pokédex, {nome_jogador}!")
     else:
         pokemon_capturados.append(pokemon_encontrado)
-        print(f"Parabéns, {nome_jogador}! Você capturou um {pokemon_encontrado}!")
 
 def encontrou_pokemon():
     if len(pokemon_capturados) < 3:
@@ -63,6 +65,10 @@ def encontrou_pokemon():
         else:
             print("Tudo bem, volte quando quiser tentar novamente!")
             return False
+
+#----Fim_Funções----#
+
+#----Inicio_Menu----#
 
 while True:
     menu = input("O que deseja fazer?\nExplorar\nPokedex\nSair\n").lower()
