@@ -1,5 +1,4 @@
 import random
-
 pokemon_capturados = []
 
 nome_jogador = input("Qual é o seu nome aventureiro? ")
@@ -12,7 +11,19 @@ pokemons_caverna = ["Zubat", "Grimer", "Cubone", "Geodude"]
 pokemons_mato = ["Pidgey", "Rattata", "Ekans", "Oddish"]
 
 
-#----Inicio_Funções----#
+#----Inicio_Funções----#S
+
+def sorteio_pokemon(lista_pokemon):
+    indice_sorteado = random.randint(0, len(lista_pokemon)-1)
+    pokemon_sorteado = lista_pokemon[indice_sorteado]
+    return pokemon_sorteado
+
+def capturar_pokemonnn(pokemon,prob):
+    sorteio = random.random()
+    if sorteio < prob:
+        return 1
+    else:
+        return 0
 
 def pokemon_caverna():            #Verifica a chance de encontrar pokemon na caverna, se for menor não acha
     if random.random() < chance_caverna:
