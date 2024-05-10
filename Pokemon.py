@@ -1,9 +1,9 @@
 import random
 
 # Constants
-chance_caverna = 1
-chance_mato = 1
-chance_captura = 1
+chance_caverna = 0.5
+chance_mato = 0.5
+chance_captura = 0.5
 
 # Lists
 pokemons_caverna = ["Zubat", "Grimer", "Cubone", "Geodude"]
