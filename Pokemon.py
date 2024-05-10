@@ -3,7 +3,7 @@ import random
 # Constants
 chance_caverna = 1
 chance_mato = 1
-chance_caprtura = 1
+chance_captura = 1
 
 # Lists
 pokemons_caverna = ["Zubat", "Grimer", "Cubone", "Geodude"]
@@ -39,64 +39,53 @@ def pokemon_mato():
 
 def informar_pokemon_encontrado(pokemon_encontrado):
     print(f"\nParabéns, {nome_jogador}! Você encontrou um {pokemon_encontrado}!")
-    captura = input(f"Deseja captura-lo? (sim/não) ")
-    if captura.lower() == "sim":
-        if capturar_pokemon(pokemon_encontrado, chance_caprtura):
+    captura = input(f"Deseja captura-lo? (sim/não) ").lower()
+    while captura not in ["sim", "não"]:
+        print("Desculpe, não entendi. Por favor, digite 'sim' ou 'não'.")
+        captura = input(f"Deseja captura-lo? (sim/não) ").lower()
+
+    if captura == "sim":
+        if pokemon_encontrado in pokemon_capturados:
+            print("Você já possui este Pokemon")
+        else:
+            print(80*"-")
+            print(f"Parabéns, {nome_jogador}! Você capturou um {pokemon_encontrado}!")
+            print(80*"-")
+            pokemon_capturados.append(pokemon_encontrado)
+    elif captura == "não":
+        if capturar_pokemon(pokemon_encontrado, chance_captura):
             print(f"Parabéns, {nome_jogador}! Você capturou um {pokemon_encontrado}!")
             pokemon_capturados.append(pokemon_encontrado)
         else:
             print(f"Infelizmente, o {pokemon_encontrado} fugiu!")
+        
+def menu():
+    while True:
+        menu = input("O que deseja fazer?\nExplorar\nPokedex\nSair\n").lower()
+        while menu not in ["explorar", "pokedex", "sair"]:
+            print("Desculpe, não entendi. Por favor, digite 'explorar', 'pokedex' ou 'sair'.")
+            menu = input("O que deseja fazer?\nExplorar\nPokedex\nSair\n").lower()
 
-def encontrou_pokemon_caverna():
-    if len(pokemon_capturados) < 3:
-        return True
-    else:
-        resposta = input("Você já encontrou três Pokémons nesta caverna. Deseja fazer outra atividade? (sim/não) ").lower()
-        if resposta == "sim":
-            return True
-        else:
-            print("Continuando jornada...") 
-            return False
-
-def encontrou_pokemon_mato():
-    if len(pokemon_capturados) < 3:
-        return True
-    else:
-        resposta = input("Você já encontrou três Pokémons neste mato. Deseja fazer outra atividade? (sim/não) ").lower()
-        if resposta == "sim":
-            return True
-        else:
-            print("Continuando jornada...")
-            return False
-
-# Main loop
-while True:
-    menu = input("O que deseja fazer?\nExplorar\nPokedex\nSair\n").lower()
-    if menu == "explorar":
-        ambiente = input("Em que ambiente deseja explorar? Digite 'caverna', 'mato': ").lower()
-        if ambiente == "caverna":
-            if encontrou_pokemon_caverna():
+        if menu == "explorar":
+            ambiente = input("Em que ambiente deseja explorar? Digite 'caverna' ou 'mato': ").lower()
+            if ambiente == "caverna":
                 pokemon_encontrado = pokemon_caverna()
                 if pokemon_encontrado:
                     informar_pokemon_encontrado(pokemon_encontrado)
-        elif ambiente == "mato":
-            if encontrou_pokemon_mato():
+            elif ambiente == "mato":
                 pokemon_encontrado = pokemon_mato()
                 if pokemon_encontrado:
                     informar_pokemon_encontrado(pokemon_encontrado)
-        else:
-            print("Desculpe, não entendi. Por favor, digite 'caverna' ou 'mato'.")
-            ambiente = input("Em que ambiente deseja explorar? Digite 'caverna' ou 'mato': ").lower()
-            pokemon_encontrado = None if ambiente == "caverna" else pokemon_mato()
+            else:
+                print("Desculpe, não entendi. Por favor, digite 'caverna' ou 'mato'.")
+        elif menu == "pokedex":
+            print("\nSeus Pokémons capturados são:")
+            for pokemon in pokemon_capturados:
+             print(80*"-")
+             print(f"- {pokemon}")
+             print(80*"-")
+        elif menu == "sair":
+            print("\nObrigado por explorar este mundo Pokémon! Até a próxima!\n")
+            break
 
-        if pokemon_encontrado:
-            informar_pokemon_encontrado(pokemon_encontrado)
-    elif menu == "pokedex":
-        print("\nSeus Pokémons capturados são:")
-        for pokemon in pokemon_capturados:
-            print(f"- {pokemon}")
-    elif menu == "sair":
-        print("Até logo, aventureiro!")
-        break
-    else:
-        print("Digite novamente")
+menu()
