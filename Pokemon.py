@@ -1,22 +1,36 @@
+
 import random
 
-# Constants
 chance_caverna = 0.5
 chance_mato = 0.5
 chance_captura = 0.5
 
-# Lists
+
+pokemons_iniciais = ["Charmander", "Squirtle", "Bulbasaur"]
 pokemons_caverna = ["Zubat", "Grimer", "Cubone", "Geodude"]
 pokemons_mato = ["Pidgey", "Rattata", "Ekans", "Oddish"]
 
-# Player's name
+
 nome_jogador = input("Qual é o seu nome aventureiro? ")
 print(f"Olá {nome_jogador}, prepare-se para uma emocionante jornada!")
 
-# Initialize empty list for captured pokemons
+
 pokemon_capturados = []
 
-# Functions
+primeiro_pokemon = []
+
+#-----Funções-----#
+
+def pokemon_inicial(primeiro_pokemon):
+    pokemon_inicial = input("Escolha um dos seguintes pokemons para começar a sua jornada: Charmander, Squirtle, Bulbasaur\n").lower()
+    while pokemon_inicial not in ["charmander", "squirtle", "bulbasaur"]:
+        print("Desculpe, não entendi. Por favor, digite um pokemon válido.")
+        pokemon_inicial = input("Escolha um dos seguintes pokemons para começar a sua jornada: Charmander, Squirtle, Bulbasaur\n").lower()
+    primeiro_pokemon.append(pokemon_inicial)
+    pokemon_capturados.append(pokemon_inicial)
+    return print(f"Seu pokemon inicial foi confirmado como: -{primeiro_pokemon[0]}-")
+
+
 def sorteio_pokemon(lista_pokemon):
     return random.choice(lista_pokemon)
 
@@ -60,6 +74,7 @@ def informar_pokemon_encontrado(pokemon_encontrado):
             print(f"Infelizmente, o {pokemon_encontrado} fugiu!")
         
 def menu():
+    pokemon_inicial(primeiro_pokemon)
     while True:
         menu = input("O que deseja fazer?\nExplorar\nPokedex\nSair\n").lower()
         while menu not in ["explorar", "pokedex", "sair"]:
@@ -87,5 +102,6 @@ def menu():
         elif menu == "sair":
             print("\nObrigado por explorar este mundo Pokémon! Até a próxima!\n")
             break
+#-----Fim_Funções-----#
 
 menu()
