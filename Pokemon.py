@@ -4,19 +4,32 @@ chance_caverna = 0.5
 chance_mato = 0.5
 chance_captura = 0.5
 chance_pokebolas = 0.3
+pokebolas = 3
+
+#-----Listas de Pokemon-----#
 
 pokemons_iniciais = ["Charmander", "Squirtle", "Bulbasaur"]
 pokemons_caverna = ["Zubat", "Grimer", "Cubone", "Geodude"]
 pokemons_mato = ["Pidgey", "Rattata", "Ekans", "Oddish"]
 
+#-----Fim Listas de Pokemon-----#
+
+#-----Nome do jogador-----#
+
 nome_jogador = input("Qual é o seu nome aventureiro? ")
 print(f"Olá {nome_jogador}, prepare-se para uma emocionante jornada!")
 
-pokebolas = 3
+#-----Fim Nome do jogador-----#
+
+#-----Listas vazias-----#
 
 pokemon_capturados = []
 
 primeiro_pokemon = []
+
+#-----Fim Listas vazias-----#
+
+#-----Funções-----#
 
 def pokemon_inicial(primeiro_pokemon):
     pokemon_inicial = input("Escolha um dos seguintes pokemons para começar a sua jornada: Charmander, Squirtle, Bulbasaur\n").lower()
@@ -129,5 +142,7 @@ def menu():
         elif menu == "sair":
             print("\nObrigado por explorar este mundo Pokémon! Até a próxima!\n")
             break
+
+#-----Fim Funções-----#
 
 menu()
