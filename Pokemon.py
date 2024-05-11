@@ -75,7 +75,6 @@ def informar_pokemon_encontrado(pokemon_encontrado):
             pokebolas -= 1
             print(80*"-")
             print(f"Parabéns, {nome_jogador}! Você capturou um {pokemon_encontrado}!")
-            print(80*"-")
             pokemon_capturados.append(pokemon_encontrado)
     elif captura == "não":
         print("Ok, voltando para o menu...")
@@ -84,14 +83,16 @@ def informar_pokemon_encontrado(pokemon_encontrado):
 
 def adquirir_pokebolas():
     global pokebolas
+    print(80*"-")    
     print(f"Você possui:{pokebolas}, pokebolas")
     if random.random() < chance_pokebolas:
         qtd_pokebolas = random.randint(1, 2)
         pokebolas += qtd_pokebolas
         print(f"Parabéns, {nome_jogador}! Você adquiriu {qtd_pokebolas} pokebolas!")
     else:
+        print(80*"-")
         print("Nenhuma pokebola adquirida desta vez")
-
+        print(80*"-")
 
 def menu():
     global pokebolas
@@ -108,8 +109,8 @@ def menu():
                 if ambiente == "caverna":
                     pokemon_encontrado = pokemon_caverna()
                     if pokemon_encontrado:
-                        adquirir_pokebolas()
                         informar_pokemon_encontrado(pokemon_encontrado)
+                        adquirir_pokebolas()
                         if pokemon_encontrado not in pokemon_capturados:
                          print(f"Nenhuma pokebola gasta")
                          print(80*"-")
@@ -120,8 +121,8 @@ def menu():
                 elif ambiente == "mato":
                     pokemon_encontrado = pokemon_mato()
                     if pokemon_encontrado:
-                        adquirir_pokebolas()
                         informar_pokemon_encontrado(pokemon_encontrado)
+                        adquirir_pokebolas()
                         if pokemon_encontrado not in pokemon_capturados:
                          print(f"Nenhuma pokebola gasta")
                          print(80*"-")
@@ -136,7 +137,6 @@ def menu():
         elif menu == "pokedex":
             print("\nSeus Pokémons capturados são:")
             for pokemon in pokemon_capturados:
-             print(80*"-")
              print(f"- {pokemon}")
              print(80*"-")
         elif menu == "sair":
